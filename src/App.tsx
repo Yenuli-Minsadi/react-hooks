@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react'
+import useCounter from './hooks/useCounter';
 
 const  inputHandler = (value:any) => {
   let sum = 0;
@@ -8,23 +9,16 @@ const  inputHandler = (value:any) => {
   return value
 }
 const App = () => {
- const [data, setData] = useState('')
-//  const returnData = inputHandler(data)
-// useMemo-> used to memorize values and they are stored in cache
-  const returnData: any = useMemo(() => {
-    const returnD = inputHandler(data)// dont use listener and the variable given to listener, data is variabe given to listener-> bcoz it cause problems
-    return returnD
-  }, [data]) // []- dependency array: variable ekaka(array ekaka, ex:data) changes unothreturnData body eka run krnna
+ const { count, increment, decrement, reset } =  useCounter()
+ 
   return (
     <div>
-      <input 
-      type='text'
-      placeholder='text'
-      value={data}
-      onChange={(e) => setData(e.target.value)}/>
-      <p>{returnData}</p>
+      <h1>Count: {count}</h1>
+      <button onClick={increment}>+</button>
+      <button onClick={reset}>Reset</button>
+      <button onClick={decrement}>-</button>
     </div>
-  )
+  );
 }
 
 export default App
