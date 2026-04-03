@@ -1,6 +1,15 @@
 import React, { useMemo, useReducer, useState } from 'react'
 import useCounter from './hooks/useCounter';
 
+interface User {
+  id: string
+  name: string
+  email: string
+  age: number
+  address?: string
+  
+}
+
 const  initialState = {
   id:"",
   name:"",
@@ -10,29 +19,35 @@ const  initialState = {
 
 const ACTION_TYPES = {
   SET_ID: "SET_ID",
-  SET_ID: "SET_NAME",
-  SET_EMAIL: "SET_ID",
+  SET_NAME: "SET_NAME",
+  SET_EMAIL: "SET_EMAIL",
   AGE: "SET_AGE"
 };
 
 const reducer = (state:any, action:any) => {
   switch (action.type) {
-    case "ID": return {...state,id: action?.data
-    }
-    case "NAME": return{...state,name: action?.data
-    }
-    case "EMAIL": return { ...state, email: action?.data };
-    case "AGE": return { ...state, age: action?.data };
-    default : return state
+    case ACTION_TYPES.SET_ID:
+      return { ...state, id: action?.data };
+    case ACTION_TYPES.SET_NAME:
+      return { ...state, name: action?.data };
+    case "EMAIL":
+      ACTION_TYPES.SET_EMAIL:
+      return { ...state, email: action?.data };
+    case "AGE":
+      return { ...state, age: action?.data };
+      ACTION_TYPES.SET_AGE:
+    default:
+      return state;
   }
 
 }
 
 const App = () => {
- const [state, dispatch] =useReducer(() =>{}, initialState) //reducer function changes value of state
- const [date, setData] = useState(0)
  
-  return <div></div>
+  return <div>
+    <input/>
+
+  </div>
 }
 
 export default App
