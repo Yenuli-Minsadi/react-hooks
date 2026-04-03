@@ -1,24 +1,38 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo, useReducer, useState } from 'react'
 import useCounter from './hooks/useCounter';
 
-const  inputHandler = (value:any) => {
-  let sum = 0;
-  for (let i = 0; i < 1000000000; i++){
-    sum+=1
-  }
-  return value
+const  initialState = {
+  id:"",
+  name:"",
+  email:"",
+  age:0
 }
+
+const ACTION_TYPES = {
+  SET_ID: "SET_ID",
+  SET_ID: "SET_NAME",
+  SET_EMAIL: "SET_ID",
+  AGE: "SET_AGE"
+};
+
+const reducer = (state:any, action:any) => {
+  switch (action.type) {
+    case "ID": return {...state,id: action?.data
+    }
+    case "NAME": return{...state,name: action?.data
+    }
+    case "EMAIL": return { ...state, email: action?.data };
+    case "AGE": return { ...state, age: action?.data };
+    default : return state
+  }
+
+}
+
 const App = () => {
- const { count, increment, decrement, reset } =  useCounter()
+ const [state, dispatch] =useReducer(() =>{}, initialState) //reducer function changes value of state
+ const [date, setData] = useState(0)
  
-  return (
-    <div>
-      <h1>Count: {count}</h1>
-      <button onClick={increment}>+</button>
-      <button onClick={reset}>Reset</button>
-      <button onClick={decrement}>-</button>
-    </div>
-  );
+  return <div></div>
 }
 
 export default App
