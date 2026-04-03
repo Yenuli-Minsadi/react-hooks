@@ -6,7 +6,10 @@ const App = () => {
   console.log(ref)
 
   const handleOnClick = () => {
-    ref.current.focus()
+    if (ref.current != null) {
+        ref.current?.focus()
+        ref.current.style.background = "red"
+    }
   }
   return (
     <div>
