@@ -1,25 +1,27 @@
-import React, { useRef } from 'react'
+import React, { useMemo, useState } from 'react'
 
-const App = () => {
-  const ref = useRef(0)// element and value stored in current which is 0th index
-  // for reference DOM elements -> js wlin element is controlled instead of html
-  console.log(ref)
-
-  const handleOnClick = () => {
-    if (ref.current != null) {
-        ref.current?.focus()
-        ref.current.style.background = "red"
-    }
+const  inputHandler = (value:any) => {
+  let sum = 0;
+  for (let i = 0; i < 1000000000; i++){
+    sum+=1
   }
+  return value
+}
+const App = () => {
+ const [data, setData] = useState('')
+//  const returnData = inputHandler(data)
+// useMemo-> used to memorize values and they are stored in cache
+  const returnData: any = useMemo(() => {
+    inputHandler(data)
+  }, [])
   return (
     <div>
-      <input ref={ref} type="test" placeholder='text'/> 
-      {/* ref is an obj, current field eke value save krnw */}
-      {/* ref for refer DOM elements */}
-      {/* ref is an obj, values store key - current */}
-      {/* like useState but no component re-renders unlike in useState*/}
-      {/* mutable since no re-renders/stores mutable values without component re-renders */}
-      <button onClick={handleOnClick}>Click Me</button>
+      <input 
+      type='text'
+      placeholder='text'
+      value={data}
+      onChange={(e) => setData(e.target.value)}/>
+      <p>{returnData}</p>
     </div>
   )
 }
