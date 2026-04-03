@@ -12,8 +12,9 @@ const App = () => {
 //  const returnData = inputHandler(data)
 // useMemo-> used to memorize values and they are stored in cache
   const returnData: any = useMemo(() => {
-    inputHandler(data)
-  }, [])
+    const returnD = inputHandler(data)// dont use listener and the variable given to listener, data is variabe given to listener-> bcoz it cause problems
+    return returnD
+  }, [data]) // []- dependency array: variable ekaka(array ekaka, ex:data) changes unothreturnData body eka run krnna
   return (
     <div>
       <input 
