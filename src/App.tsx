@@ -8,17 +8,17 @@ const App = () => {
   const fetchCustomer = async () => {
     //fetch
     //promise -> future result, obj
-    const res: any = await axios.get("http://localhost:5000/api/v1/customer"); //only can await in asynchronous function
-    console.log(res)
-    setCustomers(res.data.data);
-    // const res =  axios.get("http://localhost:5000/api/v1/customer");
-    // res
-    //   .then((result) => {
-    //     setCustomers(result.data.data)//response eka awamai callback eka run wenne
-    // })
-    // .catch((err)=>{
-    //   console.error(err)
-    // })
+    // const res: any = await axios.get("http://localhost:5000/api/v1/customer"); //only can await in asynchronous function
+    // console.log(res)
+    // setCustomers(res.data.data);
+    const res =  axios.get("http://localhost:5000/api/v1/customer");
+    res
+      .then((result) => {
+        setCustomers(result.data.data)//response eka awamai callback eka run wenne
+    })
+    .catch((err)=>{
+      console.error(err)
+    })
   };
 
   //mounting
